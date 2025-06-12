@@ -1,0 +1,48 @@
+# Node.js
+node_modules/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.pnpm-store/
+
+# Backend specific
+backend/node_modules/
+backend/.env
+backend/config/*.json  # To ignore Firebase service account key files if you put them in config
+backend/dist/         # If you transpile your backend code
+backend/build/        # Another common build output directory
+
+# Frontend specific
+frontend/node_modules/
+frontend/.env
+frontend/.env.development
+frontend/.env.production
+frontend/build/       # Create React App build output
+frontend/dist/        # Another common build output directory for frontend frameworks
+frontend/.history/    # VS Code Local History
+frontend/.parcel-cache/ # Parcel bundler cache
+frontend/.vscode/     # VS Code specific files (e.g., settings, extensions)
+frontend/coverage/    # Test coverage reports
+
+# Logs
+*.log
+logs/
+*.jks # Java KeyStore files (if any Java/Android related files are present)
+
+# Editor directories and files
+.vscode/        # VS Code
+.idea/          # IntelliJ IDEA
+*.swp           # Vim swap files
+*.swo
+*~              # Emacs backup files
+
+# OS generated files
+.DS_Store
+.Trashes
+Thumbs.db
