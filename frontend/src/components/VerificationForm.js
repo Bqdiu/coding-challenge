@@ -14,14 +14,14 @@ const VerificationForm = ({ role }) => {
         setLoading(true);
         const email = localStorage.getItem('email');
         const res = await validateAccessCode(email, accessCode);
-        if(res.success) {
+        if (res.success) {
             toast.success("Login Successfully")
-            localStorage.setItem("verify",true);
+            localStorage.setItem("verify", true);
             navigate('/dashboard')
         }
         else {
             toast.error("Incorrect Access Code")
-            localStorage.setItem("verify",false);
+            localStorage.setItem("verify", false);
         }
         console.log(res);
         setLoading(false);
@@ -39,8 +39,10 @@ const VerificationForm = ({ role }) => {
                 {
                     role === 'owner' ? (
                         <>
-                            <h3 className="text-2xl font-semibold text-center">Phone verification</h3>
-                            <span className="text-[17px] text-gray-400 text-center mt-4">Please enter your code that send to your phone</span>
+                            {/* <h3 className="text-2xl font-semibold text-center">Phone verification</h3>
+                            <span className="text-[17px] text-gray-400 text-center mt-4">Please enter your code that send to your phone</span> */}
+                            <h3 className="text-2xl font-semibold text-center">Email verification</h3>
+                            <span className="text-[17px] text-gray-400 text-center mt-4 ">Please enter your code that send to your email address</span>
                         </>
 
                     ) : (
