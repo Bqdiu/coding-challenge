@@ -15,7 +15,10 @@ const createAccessCode = async (email, role) => {
         const { success, message } = await sendAccessCodeEmail(email, code);
         if (success) {
             const encodedEmail = encodeEmail(email);
-            await admin.ref(`user/${encodedEmail}`).set({ code: code, role: role});
+
+            const newEmployeeRef = admin.ref('user').push();
+            const id = newEmployeeRef.key;
+            await admin.ref(`user/${encodedEmail}`).set({ code: code, role: role, id });
             return {
                 success: true,
                 code: code,

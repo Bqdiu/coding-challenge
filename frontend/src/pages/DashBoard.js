@@ -10,6 +10,7 @@ const DashBoard = () => {
     const navigate = useNavigate();
     const verify = localStorage.getItem('verify');
     const role = localStorage.getItem('role');
+    const email = localStorage.getItem('email');
     const itemsOwner = [
         {
             label: 'Manage Employee',
@@ -43,7 +44,7 @@ const DashBoard = () => {
             key: '1',
             label: (
                 <a>
-                    Profile
+                    {email}
                 </a>
             ),
         },

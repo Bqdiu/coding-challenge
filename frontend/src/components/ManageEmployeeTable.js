@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from 'react'
-import { deleteEmployee, getAllEmployees } from '../services/userService'
+import { deleteEmployee, getAllEmployees, getEmployee } from '../services/userService'
 import { Button, Popconfirm, Table } from 'antd';
 import { FaPlus } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
@@ -66,16 +66,24 @@ const ManageEmployeeTable = () => {
     }
     const handleDeleteEmployee = async (id) => {
         try {
-            const res = await deleteEmployee(id);
-            console.log(res);
-            if (res.success) {
-                toast.success('Employee deleted successfully');
-                handleGetAllEmployee();
+            const getEmp = await getEmployee(id);
+            if(getEmp.success) {
+                const curEmail = localStorage.getItem('email');
+                console.log(getEmp);
+                if(getEmp?.data?.email === curEmail){
+                    toast.error("This user cannot be deleted")
+                }
             }
-            else {
-                toast.error('Failed to delete employee');
-                
-            }
+            // const res = await deleteEmployee(id);
+            // console.log(res);
+            // if (res.success) {
+            //     toast.success('Employee deleted successfully');
+            //     handleGetAllEmployee();
+            // }
+            // else {
+            //     toast.error('Failed to delete employee');
+
+            // }
 
         } catch (error) {
             console.error(error);
@@ -83,7 +91,7 @@ const ManageEmployeeTable = () => {
         }
     };
 
-        const handleOpen = () => {
+    const handleOpen = () => {
         setOpen(!open);
     }
 
@@ -112,7 +120,7 @@ const ManageEmployeeTable = () => {
                 className='w-full'
                 loading={loading}
             />
-            <CreateEmployModal open={open} onCancel={handleOpen} reload={handleGetAllEmployee}/>
+            <CreateEmployModal open={open} onCancel={handleOpen} reload={handleGetAllEmployee} />
 
         </div>
     )

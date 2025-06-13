@@ -43,8 +43,8 @@ export const getAllEmployees = async () => {
 
 export const getEmployee = async (id) => {
     try {
-        const url = URL + "get-employee";
-        const res = await axios.get(url, { params: { id } });
+        const url = URL + `get-employee/${id}`;
+        const res = await axios.get(url);
         if (res.status === 200) {
             return res.data;
         }
@@ -54,10 +54,10 @@ export const getEmployee = async (id) => {
 }
 
 export const createEmployee = async (payload) => {
-    const { name, email, address, role} = payload;
+    const { name, email, address, role } = payload;
     try {
         const url = URL + "create-employee";
-        const res = await axios.post(url, { name, email, address, role});
+        const res = await axios.post(url, { name, email, address, role });
         if (res.status === 201) {
             return res.data;
         }
